@@ -1,3 +1,4 @@
+import logging
 import os
 
 import requests
@@ -7,7 +8,7 @@ from cryptography.hazmat.backends import default_backend
 
 class CertificateManager:
     def __init__(self) -> None:
-        pass
+        self.logger = logging.getLogger(__name__)
 
     def download(self, url: str, dest_path: str, timeout: int = 30):
         filename = url.split('/')[-1].replace(" ", "_")

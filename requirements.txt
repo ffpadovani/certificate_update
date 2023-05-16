@@ -1,8 +1,10 @@
 certifi==2023.5.7
 cffi==1.15.1
 charset-normalizer==3.1.0
+concurrent-log-handler==0.9.24
 cryptography==40.0.2
 idna==3.4
+portalocker==2.7.0
 pycparser==2.21
 requests==2.30.0
 urllib3==2.0.2

@@ -1,7 +1,7 @@
 import logging
+import logging.config
 import os
 import sys
-from logging.handlers import RotatingFileHandler
 
 from components.cert_manager import CertificateManager, CertUrlException
 from components.service_manager import ServiceManager
@@ -22,8 +22,7 @@ def main():
     # Listing all SSL certificates installed on the server
     local_cert_list = os.listdir(path=path)
 
-    logger.debug(
-        "Verifying that the files 'fullchain.pem' and 'privkey.pem' exist")
+    logger.debug("Checking if files 'fullchain.pem' and 'privkey.pem' exist")
 
     # Verifying that SSL certificate exist on the server
 
@@ -85,13 +84,7 @@ def main():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        handlers=[RotatingFileHandler(
-            './log/certificate_updater.log', maxBytes=100000, backupCount=10)],
-        level=logging.DEBUG,
-        format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
-        datefmt='%Y-%m-%dT%H:%M:%S')
-
+    logging.config.fileConfig("logging.conf")
     logger = logging.getLogger(__name__)
 
     main()
